@@ -1,0 +1,21 @@
+getwd()
+setwd('/Users/yangdongjae/Desktop/2020/대외활동/암센터 빅데이터 플랫폼 경진대회/Cancer_project/data/Prep')
+
+df = read.csv('Prep.csv')
+str(df)
+
+df$PT_SBST_NO = as.factor(df$PT_SBST_NO)
+df$IRB_APRV_NO = as.factor(df$IRB_APRV_NO)
+df$DEATH_YMD = as.POSIXct.Date(df$DEATH_YMD)
+df$DIAG_YMD = as.POSIXct.Date(df$DIAG_YMD)
+df$DIAG_CD = as.factor(df$DIAG_CD)
+df$BRCN_DIAG_NM_KIND_CD = as.factor(df$BRCN_DIAG_NM_KIND_CD)
+df$DIAG_KNM = as.factor(df$DIAG_KNM)
+df$DIAG_CLSF_NM = as.factor(df$DIAG_CLSF_NM)
+df$CRTN_DT = as.factor(df$CRTN_DT)
+str(df$live_days)
+
+fit = glm(formula = live_days~PT_SBST_NO+IRB_APRV_NO+DEATH_YMD+DIAG_YMD+BRCN_DIAG_NM_KIND_CD+DIAG_KNM+DIAG_CLSF_NM+CRTN_DT, data = df)
+str(df)
+summary(fit)
+
